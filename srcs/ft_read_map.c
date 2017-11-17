@@ -6,13 +6,13 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 20:05:56 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/17 12:05:29 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:28:44 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_read_map(int fd, char ops[3])
+char	*ft_read_map(int fd)
 {
 	int					ret;
 	char				*final;
@@ -37,14 +37,14 @@ char	*ft_read_map(int fd, char ops[3])
 	return (final + i);
 }
 
-void	ft_error(char **argv, int fd, char *map, char ops[3])
+void	ft_error(char **argv, char *ret)
 {
 	while (*argv)
 	{
 		fd = open(*argv, O_RDONLY);
-		if (!(map = ft_read_map(fd, ops)) || (!fillit(map, ops)))
+		if (!(ret = ft_read_map(fd)))
 		{
-			ERROR;
+/*			ERROR;
 			if (!argv[1])
 				break ;
 			else
@@ -56,6 +56,6 @@ void	ft_error(char **argv, int fd, char *map, char ops[3])
 		}
 		if (argv[1])
 			write(1, "\n", 1);
-		argv++;
+		argv++; */
 	}
 }
