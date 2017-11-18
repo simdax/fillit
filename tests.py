@@ -13,5 +13,3 @@ def p_mat():
             w('\n')
         w(mat[i])
 
-p_mat()
-
