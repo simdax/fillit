@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/22 18:05:58 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/22 18:15:14 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*set_matrice(int size)
 
 	matrice = (char*)malloc(sizeof(char) * (size * size + 1));
 	memset(matrice, '.', size*size);
-	matrice[size * size + 1] = 0;
+	matrice[size * size] = 0;
 	return (matrice);
 }
 
@@ -57,12 +57,13 @@ void	resolve(char **list, int len, int size)
 
 	char *matrice;
 
-	int i = 19;
-	while (i)
+	int i = 0;
+	while (i < 19)
 	{
 		matrice = set_matrice(size);
-		add(g_tetros[i--], matrice, 0, size);
+		add(g_tetros[i], matrice, 0, size);
 		printf("%s\n", matrice);
+		i++;
 	}
 }
 
