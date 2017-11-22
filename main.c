@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/22 19:20:02 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/22 19:44:28 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,33 @@ void	print(char *matrice, size_t size)
 	ft_putstr("\n\n");
 }
 
+void	clean(char *matrice, size_t places[5])
+{
+	while (*places) {
+		matrice[*places++] = '.';
+	}		
+}
+
 int		add(char *tetromino, char *matrice, size_t pos, size_t size)
 {
 	unsigned int	row;
+	size_t			puts[5];
+	size_t			i;
 
+	i = 0;
+	ft_memset(puts, 0, sizeof(size_t) * 5);
 	row = pos / size;
 	while (*tetromino)
 	{
 		if (*tetromino == '#')
 		{
-			if (pos > size * size || pos / size > row)
+			if (matrice[pos] == '#' ||
+				pos > size * size || pos / size > row)
+			{
+				clean(matrice, puts);
 				return (0);
-			else if (matrice[pos] == '.')
+			}
+				puts[i++] = pos;
 				matrice[pos] = '#';
 		}
 		else if (*tetromino == '\n')
@@ -58,7 +73,7 @@ char	*set_matrice(int size)
 	char	*matrice;
 
 	matrice = (char*)malloc(sizeof(char) * (size * size + 1));
-	memset(matrice, '.', size*size);
+	memset(matrice, '.', size * size);
 	matrice[size * size] = 0;
 	return (matrice);
 }
@@ -66,11 +81,14 @@ char	*set_matrice(int size)
 int		resolve(int size)
 {
 	char *matrice;
+
 	int i = 0;
+	matrice = set_matrice(size);
 	while (i < 19)
 	{
-		matrice = set_matrice(size);
-		printf("%d", add(g_tetros[i], matrice, 5, size));
+		int j = 0;
+		while (j < size*size && !add(g_tetros[i], matrice, j, size))
+			j++;
 		print(matrice, size);
 		i++;
 	}
