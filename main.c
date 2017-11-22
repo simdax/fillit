@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/22 18:28:25 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/22 19:20:02 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,28 @@ void	print(char *matrice, size_t size)
 		ft_putchar(*matrice++);
 		i++;
 	}
+	ft_putstr("\n\n");
 }
 
 int		add(char *tetromino, char *matrice, size_t pos, size_t size)
 {
+	unsigned int	row;
+
+	row = pos / size;
 	while (*tetromino)
 	{
 		if (*tetromino == '#')
 		{
-			if (matrice[pos] == '.')
-				matrice[pos] = '#';
-			else
+			if (pos > size * size || pos / size > row)
 				return (0);
+			else if (matrice[pos] == '.')
+				matrice[pos] = '#';
 		}
 		else if (*tetromino == '\n')
+		{
+			row++;
 			pos += size - 5;
+		}
 		tetromino++;
 		pos++;
 	}
@@ -56,22 +63,18 @@ char	*set_matrice(int size)
 	return (matrice);
 }
 
-void	resolve(char **list, int len, int size)
+int		resolve(int size)
 {
-	(void)list;
-	(void)len;
-
 	char *matrice;
-
 	int i = 0;
 	while (i < 19)
 	{
 		matrice = set_matrice(size);
-		add(g_tetros[i], matrice, 0, size);
+		printf("%d", add(g_tetros[i], matrice, 5, size));
 		print(matrice, size);
-		ft_putstr("\n\n");
 		i++;
 	}
+	return (0);
 }
 
 
@@ -79,7 +82,7 @@ int 	main(int argc, char **argv)
 {
 	if (argc > 0) {		
 		argv++;
-		resolve(argv, argc - 2, 4);
+		resolve(4);
 	}	 
 	return 0;
 }
