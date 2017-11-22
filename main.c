@@ -6,19 +6,25 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/22 18:15:14 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/22 18:28:25 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include "libft.h"
 #include "tetrominos.h"
 
-void	dod(char **coucou)
+void	print(char *matrice, size_t size)
 {
-	while (*coucou) {
-		printf("%s", *coucou++);	
+	size_t	i;
+
+	i = 0;
+	while (*matrice) {
+		if (i && !(i % size))
+			printf("\n");
+		ft_putchar(*matrice++);
+		i++;
 	}
-	printf("\n");
 }
 
 int		add(char *tetromino, char *matrice, size_t pos, size_t size)
@@ -62,7 +68,8 @@ void	resolve(char **list, int len, int size)
 	{
 		matrice = set_matrice(size);
 		add(g_tetros[i], matrice, 0, size);
-		printf("%s\n", matrice);
+		print(matrice, size);
+		ft_putstr("\n\n");
 		i++;
 	}
 }
