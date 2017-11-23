@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   ft_read_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/20 20:05:56 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/23 13:06:16 by nschwarz         ###   ########.fr       */
+/*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
+/*   Updated: 2017/11/23 16:19:58 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,64 @@
 
 char	*ft_read_map(int fd)
 {
-	int					ret;
-	char				*final;
-	char				buf[64];
-	unsigned int		i;
+	int		ret;
+	char	*final;
+	char	buf[BUF_SIZE + 1];
 
 	if (fd == -1)
 		return (0);
-	i = 0;
-	final = (char*)malloc(sizeof(char) * 10000);
-	while ((ret = read(fd, buf, 64)))
-		ft_strncat(final, buf, ret);
-	final[i] = '\0';
-	i = 0;
-	while (final[i++] != '\n')
-		;
-	ops[2] = final[i - 2];
-	ops[1] = final[i - 3];
-	ops[0] = final[i - 4];
-	return (final + i);
+	ret = 0;
+	ret = read(fd, buf, BUF_SIZE);
+	buf[ret] = '\0';
+	if (!(final = ft_strnew(ret)))
+		return (NULL);
+	ft_strcpy(final, buf);
+	return (final);
 }
 
-int		*ft_parse(char *map)
+char	**convert(char *map)
+{
+	char	**ret;
+	int		i;
+	int		p;
+	int		w;
+
+	i = 0;
+	p = 0;
+	w = 0;
+	while (map[w] != '\0')
+	{
+		while (map[w] != '\n')
+		{
+			ret[i][p] = map[w];
+			p++;
+			w++;
+		}
+		i++;
+		p = 0;
+	}
+}
+
+int		*ft_parse(char **map)
 {
 	int		*ret;
-}
+	int		i;
+	int		cur;
+	int		y;
 
-void	ft_error(char **argv, char *ret)
-{
-	while (*argv)
+	while (map)
 	{
-		fd = open(*argv, O_RDONLY);
-		if (!(ret = ft_read_map(fd)))
+		while (g_tetros[i])
 		{
-/*			ERROR;
-			if (!argv[1])
-				break ;
-			else
+			if (ft_strcmp(map[cur], g_tetros[i]) == 1)
 			{
-				argv++;
-				write(1, "\n", 1);
-				continue ;
+				ret[cur] = i;
+				break ;
 			}
+			i++;
 		}
-		if (argv[1])
-			write(1, "\n", 1);
-		argv++; */
+		i = 0;
+		cur++;
 	}
+	return (ret);
 }
