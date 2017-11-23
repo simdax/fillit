@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/23 18:23:53 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/23 18:57:08 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int		main(int argc, char**argv)
 		ft_putstr("usage: ./fillit source_file");
 		return (0);
 	}
-	fd = open(*argv, O_RDONLY);
+	fd = open(*++argv, O_RDONLY);
 	map = ft_read_map(fd);
-	secmap = convert(map);
+	secmap = ft_strsplit(map, '\n');
 	ret = ft_parse(secmap);
 }

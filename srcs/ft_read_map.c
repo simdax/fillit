@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/23 18:22:43 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/23 18:43:03 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,6 @@ char	*ft_read_map(int fd)
 		return (NULL);
 	ft_strcpy(final, buf);
 	return (final);
-}
-
-char	**convert(char *map)
-{
-	char	**ret;
-	int		i;
-	int		p;
-	int		w;
-
-	i = 0;
-	p = 0;
-	w = 0;
-	ret = (char**)malloc(sizeof(map));
-	while (map[w] != '\0')
-	{
-		while (map[w] != '\n')
-		{
-			ret[i][p] = map[w];
-			p++;
-			w++;
-		}
-		i++;
-		p = 0;
-	}
-	return (ret);
 }
 
 int		ft_nbtetri(char **map)
