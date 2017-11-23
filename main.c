@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/23 14:43:32 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/23 15:33:23 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@ void	clean(char *matrice, size_t places[5])
 	while (*places) {
 		matrice[*places++] = '.';
 	}		
+}
+
+char	*set_matrice(int size)
+{
+	char	*matrice;
+
+	matrice = (char*)malloc(sizeof(char) * (size * size + 1));
+	memset(matrice, '.', size * size);
+	matrice[size * size] = 0;
+	return (matrice);
 }
 
 int		place(char *tetromino, char *matrice, size_t pos, size_t size, size_t index)
@@ -68,14 +78,14 @@ int		place(char *tetromino, char *matrice, size_t pos, size_t size, size_t index
 	return (1);
 }
 
-char	*set_matrice(int size)
+void	remove_piece(char *matrice, int index)
 {
-	char	*matrice;
-
-	matrice = (char*)malloc(sizeof(char) * (size * size + 1));
-	memset(matrice, '.', size * size);
-	matrice[size * size] = 0;
-	return (matrice);
+	while (*matrice) {
+		if (*matrice == 'A' + index) {
+			*matrice = '.';
+		}
+		matrice++;
+	}
 }
 
 int		add(char **argv, char *matrice, size_t size, int len, int index)
@@ -84,9 +94,16 @@ int		add(char **argv, char *matrice, size_t size, int len, int index)
 
 	if (index == len)
 		return (1);
-	while (j < size * size) {
+	while (j < size * size)
+	{
+		//		printf("%s pour %d\n", matrice, index );	
 		if ((place(g_tetros[atoi(argv[index])], matrice, j, size, index)))
-			return (add(argv, matrice, size, len, index + 1));
+		{
+			if (add(argv, matrice, size, len, index + 1))
+				return (1);
+			else
+				remove_piece(matrice, index);
+		}
 		j++;
 	}
 	return (0);
@@ -103,11 +120,9 @@ int		resolve(char **argv, size_t size)
 	int res = 0;
 	res = add(argv, matrice, size, t, 0);
 	if (!res)
-	{
 		resolve(argv, size + 1);
-		return (0);
-	}
-	print(matrice, size);
+	else
+		print(matrice, size);
 	return (0);
 }
 
