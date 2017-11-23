@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/23 11:21:40 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/23 13:32:33 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int		add(char *tetromino, char *matrice, size_t pos, size_t size, size_t index)
 				clean(matrice, puts);
 				return (0);
 			}
-				puts[i++] = pos;
-				matrice[pos] = 'A' + index;
+			puts[i++] = pos;
+			matrice[pos] = 'A' + index;
 		}
 		else if (*tetromino == '\n')
 		{
@@ -78,29 +78,33 @@ char	*set_matrice(int size)
 	return (matrice);
 }
 
-int		resolve(char **argv, size_t size)
+int		resolve(char **argv, size_t size, unsigned int offset)
 {
 	char *matrice;
 
 	unsigned int	i = 0;
 	size_t			t = 0;
+	unsigned int	j = offset;
 
 	while (argv[t])
 		t++;
 	matrice = set_matrice(size);
 	while (i < t)
 	{
-		unsigned int j = 0;
 		int res = 0;
-		while (j < size*size && !(res = add(g_tetros[atoi(argv[i])], matrice, j, size, i)))
+		while (j < size * size - offset && !(res = add(g_tetros[atoi(argv[i])], matrice, j, size, i)))
 			j++;
 		if (!res) {
-			resolve(argv, size + 1);
-			return (0);
-			}
+			if (offset < t)
+				resolve(argv, size, offset + 1);
+			break;
+		}
 		i++;
 	}
-	print(matrice, size);
+	if (i == t)
+		print(matrice, size);
+	else
+		resolve(argv, size + 1, 0);
 	return (0);
 }
 
@@ -109,7 +113,7 @@ int 	main(int argc, char **argv)
 {
 	if (argc > 0) {		
 		argv++;
-		resolve(argv, 3);
+		resolve(argv, 3, 0);
 	}	 
 	return 0;
 }
