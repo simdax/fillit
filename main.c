@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/23 10:10:34 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/23 11:21:40 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,26 @@ char	*set_matrice(int size)
 	return (matrice);
 }
 
-int		resolve(int size)
+int		resolve(char **argv, size_t size)
 {
 	char *matrice;
 
-	int i = 0;
+	unsigned int	i = 0;
+	size_t			t = 0;
+
+	while (argv[t])
+		t++;
 	matrice = set_matrice(size);
-	while (i < 19)
+	while (i < t)
 	{
-		int j = 0;
+		unsigned int j = 0;
 		int res = 0;
-		while (j < size*size && !(res = add(g_tetros[i], matrice, j, size, i)))
+		while (j < size*size && !(res = add(g_tetros[atoi(argv[i])], matrice, j, size, i)))
 			j++;
 		if (!res) {
-			resolve(size + 1);
+			resolve(argv, size + 1);
 			return (0);
-		}
+			}
 		i++;
 	}
 	print(matrice, size);
@@ -105,7 +109,7 @@ int 	main(int argc, char **argv)
 {
 	if (argc > 0) {		
 		argv++;
-		resolve(4);
+		resolve(argv, 3);
 	}	 
 	return 0;
 }
