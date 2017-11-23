@@ -1,26 +1,26 @@
 SRC_PATH = srcs
 
 SRC_NAME =  main.c \
-            foo1.c \
-            foo2.c
+            ft_read_map.c \
 
 OBJ_PATH = obj
-
-INC_PATH = includes
 
 CPPFLAGS = -Iincludes
 
 LDFLAGS = -Llibft
+
 LDLIBS = -lft
 
 NAME = a.out
 
-CC = clang
+CC = gcc
+
 CFLAGS = -Werror -Wall -Wextra
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 .PHONY: all, clean, fclean, re

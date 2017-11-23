@@ -6,11 +6,13 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/23 16:19:58 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/23 18:22:43 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "fillit.h"
+#include "tetrominos.h"
 
 char	*ft_read_map(int fd)
 {
@@ -39,6 +41,7 @@ char	**convert(char *map)
 	i = 0;
 	p = 0;
 	w = 0;
+	ret = (char**)malloc(sizeof(map));
 	while (map[w] != '\0')
 	{
 		while (map[w] != '\n')
@@ -50,6 +53,17 @@ char	**convert(char *map)
 		i++;
 		p = 0;
 	}
+	return (ret);
+}
+
+int		ft_nbtetri(char **map)
+{
+	int		i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
 }
 
 int		*ft_parse(char **map)
@@ -57,8 +71,9 @@ int		*ft_parse(char **map)
 	int		*ret;
 	int		i;
 	int		cur;
-	int		y;
 
+	cur = 0;
+	ret = (int*)malloc(sizeof(int*) * (ft_nbtetri(map) + 1));
 	while (map)
 	{
 		while (g_tetros[i])
