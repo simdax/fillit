@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/23 15:33:23 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/23 17:16:09 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	print(char *matrice, size_t size)
 	ft_putstr("\n\n");
 }
 
-void	clean(char *matrice, size_t places[5])
+void	clean(char *matrice, int places[4])
 {
-	while (*places) {
+	while (*places != -1) {
 		matrice[*places++] = '.';
 	}		
 }
@@ -48,23 +48,26 @@ char	*set_matrice(int size)
 int		place(char *tetromino, char *matrice, size_t pos, size_t size, size_t index)
 {
 	unsigned int	row;
-	size_t			puts[5];
+	unsigned int	col;
+	int				puts[4];
 	size_t			i;
 
 	i = 0;
-	ft_memset(puts, 0, sizeof(size_t) * 5);
+	ft_memset(puts, -1, sizeof(int) * 4);
+	col = pos % size;
 	row = pos / size;
 	while (*tetromino)
 	{
 		if (*tetromino == '#')
 		{
 			if (matrice[pos] != '.' ||
-				pos > size * size || pos / size > row)
+				pos % size > col || pos / size > row)
 			{
 				clean(matrice, puts);
 				return (0);
 			}
 			puts[i++] = pos;
+			col++;
 			matrice[pos] = 'A' + index;
 		}
 		else if (*tetromino == '\n')
@@ -96,7 +99,7 @@ int		add(char **argv, char *matrice, size_t size, int len, int index)
 		return (1);
 	while (j < size * size)
 	{
-		//		printf("%s pour %d\n", matrice, index );	
+//		printf("%s pour %d\n", matrice, index );	
 		if ((place(g_tetros[atoi(argv[index])], matrice, j, size, index)))
 		{
 			if (add(argv, matrice, size, len, index + 1))
