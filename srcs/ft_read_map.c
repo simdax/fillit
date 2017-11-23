@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/20 20:05:56 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/17 15:28:44 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/23 13:06:16 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ char	*ft_read_map(int fd)
 	i = 0;
 	final = (char*)malloc(sizeof(char) * 10000);
 	while ((ret = read(fd, buf, 64)))
-	{
 		ft_strncat(final, buf, ret);
-	}
 	final[i] = '\0';
 	i = 0;
 	while (final[i++] != '\n')
@@ -35,6 +33,11 @@ char	*ft_read_map(int fd)
 	ops[1] = final[i - 3];
 	ops[0] = final[i - 4];
 	return (final + i);
+}
+
+int		*ft_parse(char *map)
+{
+	int		*ret;
 }
 
 void	ft_error(char **argv, char *ret)
