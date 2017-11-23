@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/23 17:16:09 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/23 17:42:24 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		place(char *tetromino, char *matrice, size_t pos, size_t size, size_t index
 		if (*tetromino == '#')
 		{
 			if (matrice[pos] != '.' ||
-				pos % size > col || pos / size > row)
+				pos / size > row)
 			{
 				clean(matrice, puts);
 				return (0);
@@ -99,7 +99,7 @@ int		add(char **argv, char *matrice, size_t size, int len, int index)
 		return (1);
 	while (j < size * size)
 	{
-//		printf("%s pour %d\n", matrice, index );	
+//		fprintf(stdout, "%s pour %d\n", matrice, index);
 		if ((place(g_tetros[atoi(argv[index])], matrice, j, size, index)))
 		{
 			if (add(argv, matrice, size, len, index + 1))
