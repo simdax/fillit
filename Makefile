@@ -1,48 +1,59 @@
-SRC_PATH = srcs
 
-SRC_NAME =  main.c \
-            ft_read_map.c \
+#  ╓─────[ Fillit ]─[ v0.0.1 ]  
+#  ║ Created by: ctrouill (ctrouill@student.42.fr)
+#  ║ Created at: Tue Nov  7 14:40:48 CET 2017
+#  ║ Last Edited: Tue Nov  7 14:40:48 CET 2017
+#  ╙─────────────────────────────────────────── ─ ─ 
 
-OBJ_PATH = obj
+#  ╓─────[ Target ]─  
+#  ╙───────────────────── ─ ─ 
+NAME = fillit
 
-CPPFLAGS = -Iincludes
-
-LDFLAGS = -Llibft
-
-LDLIBS = -lft
-
-NAME = a.out
-
+#  ╓─────[ Compiler ]─  
+#  ╙───────────────────── ─ ─ 
 CC = gcc
+CCFLAGS = -Wall -Werror -Wextra -g
+LDFLAGS = -L$(LIBFT) -lft
 
-CFLAGS = -Werror -Wall -Wextra
+#  ╓─────[ Functions ]─  
+#  ╙───────────────────── ─ ─
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
+SRC = ft_read_map.c main.c 
+LIBFT = libft/
+INC = ./libft
+OBJ = $(SRC:.c=.o)
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+vpath %.c srcs/
 
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
-
-.PHONY: all, clean, fclean, re
-
+#  ╓─────[ Procedures ]─  
+#  ╙───────────────────── ─ ─
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
+	@$(MAKE) lib
+	@$(CC) $(OBJ) $(CCFLAGS) $(LDFLAGS) -o $(NAME)
+	@echo "\n\033[0;32m [OK] \033[0m \033[0;33m Linking binary:\033[0m " $(NAME)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+%.o : %.c
+	@echo "\033[0;32m [OK] \033[0m \033[0;33m Compiling:\033[0m " $@
+	@$(CC) $(CCFLAGS) -I$(INC)  -c -o $@ $<
 
 clean:
-	/bin/rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
+	@/bin/rm -Rf $(OBJ)
+	@/bin/rm -rf $(OBJSPATH)
 
 fclean: clean
-	/bin/rm -fv $(NAME)
+	@rm -f $(NAME)
+	@make -C $(LIBFT) fclean
+	@echo  "\033[0;31m [✗] \033[0m \033[0;33m Removed last build: \033[0m " $(NAME)
 
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
 
-norme:
-	@norminette $(SRC)
-	@norminette $(INC_PATH)/*.h
+lib:
+	@make -C $(LIBFT)
+
+#  ╓─────[ Call me maybe ]─  
+#  ╙───────────────────── ─ ─ 
+.PHONY: all lib clean fclean re

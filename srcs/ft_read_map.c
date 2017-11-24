@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/23 18:43:03 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/24 10:27:29 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_read_map(int fd)
 	return (final);
 }
 
-int		ft_nbtetri(char **map)
+static int		ft_nbtetri(char **map)
 {
 	int		i;
 
