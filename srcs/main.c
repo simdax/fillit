@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/24 10:29:29 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/24 11:15:57 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,4 @@ int		main(int argc, char**argv)
 	map = ft_read_map(fd);
 	secmap = ft_strsplit(map, '\n');
 	ret = ft_parse(secmap);
-	printf("%d", ret[0]);
 }
