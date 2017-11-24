@@ -36,7 +36,7 @@ $(NAME): $(OBJ)
 
 %.o : %.c
 	@echo "\033[0;32m [OK] \033[0m \033[0;33m Compiling:\033[0m " $@
-	@$(CC) $(CCFLAGS) -I$(INC)  -c -o $@ $<
+	@$(CC) $(CCFLAGS) -I$(INC) -I./includes  -c -o $@ $<
 
 clean:
 	@/bin/rm -Rf $(OBJ)
