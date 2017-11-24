@@ -6,14 +6,14 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/24 12:18:02 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/24 14:18:40 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-int		main(int argc, char**argv)
+int		main(int argc, char **argv)
 {
 	int		fd;
 	char	*map;
