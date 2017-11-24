@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/24 11:15:57 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/24 12:18:02 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ int		main(int argc, char**argv)
 	fd = open(*++argv, O_RDONLY);
 	map = ft_read_map(fd);
 	secmap = ft_strsplit(map, '\n');
+	ret = (int*)malloc(sizeof(int*) * (ft_nbtetri(secmap) + 1));
 	ret = ft_parse(secmap);
+	close(fd);
 }

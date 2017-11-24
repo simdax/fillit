@@ -54,6 +54,9 @@ re:
 lib:
 	@make -C $(LIBFT)
 
+norme:
+	norminette srcs/*.c
+	norminette includes/*.h
 #  ╓─────[ Call me maybe ]─  
 #  ╙───────────────────── ─ ─ 
 .PHONY: all lib clean fclean re
