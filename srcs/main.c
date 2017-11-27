@@ -6,30 +6,26 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/27 16:22:48 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/27 19:42:35 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-int		*ft_caller(char **secmap)
+int		*ft_caller(char **secmap, int cur)
 {
 	int		*ret;
 	char	*map1d;
+	int		*rret;
 
 	map1d = ft_strjoin(secmap[0], secmap[1]);
 	map1d = ft_strjoin(map1d, secmap[2]);
 	map1d = ft_strjoin(map1d, secmap[3]);
-	ret = (int*)malloc(sizeof(int*) * (ft_nbtetri(secmap) + 1));
+	rret = (int*)malloc(sizeof(int) * (ft_nbtetri(secmap) + 1));
 	ret = ft_preparse(map1d);
-	return (ret);
-}
-
-void	prin(char **map)
-{
-	while (*map)
-		write(1, *map++, 4);
+	rret[cur] = ft_parse(ret);
+	return (rret);
 }
 
 int		main(int argc, char **argv)
@@ -38,7 +34,9 @@ int		main(int argc, char **argv)
 	char	*map;
 	char	**secmap;
 	int		i;
-
+	int		cur;
+	
+	cur = 0;
 	i = 0;
 	if (argc != 2)
 	{
@@ -50,8 +48,9 @@ int		main(int argc, char **argv)
 	secmap = ft_strsplit(map, '\n');
 	while (secmap[i])
 	{
-		ft_caller(secmap + i);
+		ft_caller(secmap + i, cur);
 		i += 4;
+		cur++;
 	}
 	close(fd);
 }

@@ -6,13 +6,14 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/27 16:50:08 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/27 19:41:26 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 #include "tetrominos.h"
+#include "tetrominos2.h"
 
 char	*ft_read_map(int fd)
 {
@@ -29,6 +30,15 @@ char	*ft_read_map(int fd)
 		return (NULL);
 	ft_strcpy(final, buf);
 	return (final);
+}
+
+int		ft_intcmp(int *a, int *b)
+{
+	int	i;
+	i = 0;
+	while (a[i] == b[i] && a[i] != '\0' && b[i] != '\0')
+		i++;
+	return (a[i] - b[i]);
 }
 
 int		ft_nbtetri(char **map)
@@ -76,27 +86,16 @@ int		*ft_preparse(char *map)
 	return (ret);
 }
 
-int		*ft_parse(char **map)
+int		ft_parse(int *parsedmap)
 {
-	int		*ret;
 	int		i;
-	int		cur;
-
-	cur = 0;
-	ret = (int*)malloc(sizeof(int*) * (ft_nbtetri(map) + 1));
-	while (map[cur])
+	
+	i = 0;
+	while (g_tetros[i])
 	{
-		while (g_tetros[i])
-		{
-			if (ft_strcmp(map[cur], g_tetros[i]) == 1)
-			{
-				ret[cur] = i;
-				break ;
-			}
-			i++;
-		}
-		i = 0;
-		cur++;
+		if (ft_intcmp(parsedmap, g_tetros2[i]) == 1)
+			return (i);
+		i++;
 	}
-	return (ret);
+	return (0);
 }
