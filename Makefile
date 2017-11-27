@@ -11,7 +11,7 @@ NAME = fillit
 
 #  ╓─────[ Compiler ]─  
 #  ╙───────────────────── ─ ─ 
-CC = gcc
+CC = gcc -g
 CCFLAGS = -Wall -Werror -Wextra -g
 LDFLAGS = -L$(LIBFT) -lft
 

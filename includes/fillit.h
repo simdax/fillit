@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 12:59:19 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/27 12:15:05 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/27 16:22:08 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FILLIT_H
 
 # define BUF_SIZE 64
-# include <stdio.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>

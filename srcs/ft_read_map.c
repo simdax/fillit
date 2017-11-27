@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/27 12:20:38 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/27 16:21:56 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ char	*ft_read_map(int fd)
 {
 	int		ret;
 	char	*final;
-	char	buf[BUF_SIZE + 1];
+	char	buf[256];
 
 	if (fd == -1)
 		return (0);
 	ret = 0;
-	ret = read(fd, buf, BUF_SIZE);
+	ret = read(fd, buf, 256);
 	buf[ret] = '\0';
 	if (!(final = ft_strnew(ret)))
 		return (NULL);
@@ -74,7 +74,6 @@ int		*ft_preparse(char *map)
 		if (tmp != 5000)
 			tmp++;
 	}
-	printf ("%d, %d, %d, %d", ret[0], ret[1], ret[2], ret[3]);
 	return (ret);
 }
 

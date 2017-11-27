@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/27 13:49:11 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/27 16:22:48 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,32 @@ int		*ft_caller(char **secmap)
 	return (ret);
 }
 
+void	prin(char **map)
+{
+	while (*map)
+		write(1, *map++, 4);
+}
+
 int		main(int argc, char **argv)
 {
 	int		fd;
 	char	*map;
 	char	**secmap;
+	int		i;
 
+	i = 0;
 	if (argc != 2)
 	{
-		ft_putstr("usage: ./fillit source_file");
+		ft_putstr("usage: ./fillit source_file\n");
 		return (0);
 	}
 	fd = open(*++argv, O_RDONLY);
 	map = ft_read_map(fd);
 	secmap = ft_strsplit(map, '\n');
-	while (secmap)
+	while (secmap[i])
 	{
-		ft_caller
+		ft_caller(secmap + i);
+		i += 4;
 	}
 	close(fd);
 }
