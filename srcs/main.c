@@ -6,19 +6,31 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/24 14:18:40 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/27 13:49:11 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
+int		*ft_caller(char **secmap)
+{
+	int		*ret;
+	char	*map1d;
+
+	map1d = ft_strjoin(secmap[0], secmap[1]);
+	map1d = ft_strjoin(map1d, secmap[2]);
+	map1d = ft_strjoin(map1d, secmap[3]);
+	ret = (int*)malloc(sizeof(int*) * (ft_nbtetri(secmap) + 1));
+	ret = ft_preparse(map1d);
+	return (ret);
+}
+
 int		main(int argc, char **argv)
 {
 	int		fd;
 	char	*map;
 	char	**secmap;
-	int		*ret;
 
 	if (argc != 2)
 	{
@@ -28,7 +40,9 @@ int		main(int argc, char **argv)
 	fd = open(*++argv, O_RDONLY);
 	map = ft_read_map(fd);
 	secmap = ft_strsplit(map, '\n');
-	ret = (int*)malloc(sizeof(int*) * (ft_nbtetri(secmap) + 1));
-	ret = ft_parse(secmap);
+	while (secmap)
+	{
+		ft_caller
+	}
 	close(fd);
 }

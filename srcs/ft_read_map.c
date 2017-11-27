@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/24 17:48:41 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/27 12:20:38 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,40 +41,40 @@ int		ft_nbtetri(char **map)
 	return (i);
 }
 
-int		ft_preparse(char **map)
+int		*ft_preparse(char *map)
 {
-	unsigned int	col;
-	unsigned int	row;
 	int				*ret;
 	int				i;
 	int				tmp;
+	int				b;
 	int				a;
 
-	col = 4;
-	row = 4;
 	i = 0;
 	a = 0;
+	b = 0;
 	tmp = 5000;
-	ret = (int*)malloc(sizeof(int*) * 4);
+	ret = (int*)malloc(sizeof(int) * 4);
 	while (map[i])
 	{
 		if (map[i] == '#')
 		{
 			if (tmp == 5000)
 			{
-				ret[a] == 0;
+				ret[a] = 0;
 				tmp = 0;
+				b = i;
 			}
-			else
-				ret[a] == tmp;
+			if (tmp != 5000)
+				ret[a] = i - b;
 			tmp++;
-			i++;
+	//		i++;
 			a++;
 		}
 		i++;
 		if (tmp != 5000)
 			tmp++;
 	}
+	printf ("%d, %d, %d, %d", ret[0], ret[1], ret[2], ret[3]);
 	return (ret);
 }
 
