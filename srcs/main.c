@@ -6,12 +6,14 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/27 19:42:35 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/27 20:07:52 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
+
+#include	<stdio.h>
 
 int		*ft_caller(char **secmap, int cur)
 {
@@ -25,6 +27,10 @@ int		*ft_caller(char **secmap, int cur)
 	rret = (int*)malloc(sizeof(int) * (ft_nbtetri(secmap) + 1));
 	ret = ft_preparse(map1d);
 	rret[cur] = ft_parse(ret);
+	printf("%d\n", rret[0]);
+	printf("%d\n", rret[1]);
+	printf("%d\n", rret[2]);
+	printf("%d\n", rret[3]);
 	return (rret);
 }
 
@@ -50,7 +56,7 @@ int		main(int argc, char **argv)
 	{
 		ft_caller(secmap + i, cur);
 		i += 4;
-		cur++;
+		cur++;		
 	}
 	close(fd);
 }

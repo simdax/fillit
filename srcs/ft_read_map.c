@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/27 19:41:26 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/27 20:06:00 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@ char	*ft_read_map(int fd)
 int		ft_intcmp(int *a, int *b)
 {
 	int	i;
+
 	i = 0;
-	while (a[i] == b[i] && a[i] != '\0' && b[i] != '\0')
+	while (i < 4 && a[i] - b[i] == 0)
 		i++;
-	return (a[i] - b[i]);
+	if (i == 4)
+		return (1);
+	else 
+		return (0);
 }
 
 int		ft_nbtetri(char **map)
@@ -91,9 +95,9 @@ int		ft_parse(int *parsedmap)
 	int		i;
 	
 	i = 0;
-	while (g_tetros[i])
+	while (g_tetros2[i])
 	{
-		if (ft_intcmp(parsedmap, g_tetros2[i]) == 1)
+		if (ft_intcmp(parsedmap, g_tetros2[i]))
 			return (i);
 		i++;
 	}
