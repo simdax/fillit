@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/23 17:42:24 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/28 13:40:51 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	print(char *matrice, size_t size)
 	i = 0;
 	while (*matrice) {
 		if (i && !(i % size))
-			printf("\n");
+			ft_putchar('\n');
 		ft_putchar(*matrice++);
 		i++;
 	}
-	ft_putstr("\n\n");
+	ft_putstr("\n");
 }
 
 void	clean(char *matrice, int places[4])
