@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/28 15:27:47 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/28 15:41:10 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,19 @@ int		ft_caller(char **secmap)
 
 char	**convert(int *ret, int len)
 {
-	char *res[26];
+	char **res;
 
+	res = (char**)malloc(sizeof(char*) * 26);
 	while (len--)
 	{
-		res = ft_itoa(*ret);
+		*res = ft_itoa(*ret);
 		ret++;
+		res++;
 	}
 	return (res);
 }
-int		parse(int argc, char **argv)
+
+char		**parse(int argc, char **argv)
 {
 	int		fd;
 	char	*map;
