@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/28 14:05:39 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/28 14:20:00 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		ft_caller(char **secmap)
 	return (ft_parse(ft_preparse(map1d)));
 }
 
-void	print(int *ret)
+void	print(int *ret, int len)
 {
-	while (*ret)
+	while (len--)
 	{
 		ft_putnbr(*ret);
 		ft_putchar(' ');
@@ -41,7 +41,8 @@ int		main(int argc, char **argv)
 	char	**secmap;
 	int		i;
 	int		cur;
-	
+	int		nb_tetri;
+			
 	cur = 0;
 	i = 0;
 	if (argc != 2)
@@ -52,7 +53,8 @@ int		main(int argc, char **argv)
 	fd = open(*++argv, O_RDONLY);
 	map = ft_read_map(fd);
 	secmap = ft_strsplit(map, '\n');
-	int	*ret = (int*)malloc(sizeof(int) * (ft_nbtetri(secmap) + 1));
+	nb_tetri = ft_nbtetri(secmap) / 4;
+	int	*ret = (int*)malloc(sizeof(int) * (nb_tetri + 1));
 	while (secmap[i])
 	{
 		ret[cur] = ft_caller(secmap + i);
@@ -61,6 +63,6 @@ int		main(int argc, char **argv)
 	}
 	ret[cur] = 0;
 	close(fd);
-	print(ret);
+	print(ret, nb_tetri);
 	return (0);
 }
