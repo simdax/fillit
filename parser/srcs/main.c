@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/28 15:41:10 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/28 15:53:24 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ char	**convert(int *ret, int len)
 {
 	char **res;
 
-	res = (char**)malloc(sizeof(char*) * 26);
-	while (len--)
-	{
-		*res = ft_itoa(*ret);
-		ret++;
-		res++;
-	}
+	res = (char**)malloc(sizeof(char*) * len);
+	res[len] = 0;
+	while (--len >= 0)
+		res[len] = ft_itoa(ret[len]);
 	return (res);
 }
 
