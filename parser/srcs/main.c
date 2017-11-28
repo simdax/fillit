@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/28 15:21:01 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/28 15:27:47 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ int		ft_caller(char **secmap)
 	return (ft_parse(ft_preparse(map1d)));
 }
 
-void	print(int *ret, int len)
+char	**convert(int *ret, int len)
 {
+	char *res[26];
+
 	while (len--)
 	{
-		ft_putnbr(*ret);
-		ft_putchar(' ');
+		res = ft_itoa(*ret);
 		ret++;
 	}
+	return (res);
 }
 int		parse(int argc, char **argv)
 {
@@ -63,6 +65,5 @@ int		parse(int argc, char **argv)
 	}
 	ret[cur] = 0;
 	close(fd);
-	print(ret, nb_tetri);
-	return (0);
+	return(convert(ret, nb_tetri));
 }
