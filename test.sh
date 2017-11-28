@@ -1,8 +1,11 @@
 #!/bin/bash
 
-
-Tetriminos-generator/tetri-gen -v -f 10
-
-./parser Tetriminos-generator/sample.fillit | xargs solver/solver > nous
-./claudio/fillit Tetriminos-generator/sample.fillit > cloclo
+for i in {0..10}; do
+echo test numero $i
+Tetriminos-generator/tetri-gen -v -f 5
+./parser sample.fillit | xargs ./fillit > nous
+./claudio/fillit sample.fillit > cloclo
+cat nous
+cat cloclo
 diff nous cloclo
+done
