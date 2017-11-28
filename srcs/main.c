@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/27 20:07:52 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/28 10:17:10 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,14 @@
 
 #include	<stdio.h>
 
-int		*ft_caller(char **secmap, int cur)
+int		ft_caller(char **secmap)
 {
-	int		*ret;
 	char	*map1d;
-	int		*rret;
 
 	map1d = ft_strjoin(secmap[0], secmap[1]);
 	map1d = ft_strjoin(map1d, secmap[2]);
 	map1d = ft_strjoin(map1d, secmap[3]);
-	rret = (int*)malloc(sizeof(int) * (ft_nbtetri(secmap) + 1));
-	ret = ft_preparse(map1d);
-	rret[cur] = ft_parse(ret);
-	printf("%d\n", rret[0]);
-	printf("%d\n", rret[1]);
-	printf("%d\n", rret[2]);
-	printf("%d\n", rret[3]);
-	return (rret);
+	return (ft_parse(ft_preparse(map1d)));
 }
 
 int		main(int argc, char **argv)
@@ -52,11 +43,13 @@ int		main(int argc, char **argv)
 	fd = open(*++argv, O_RDONLY);
 	map = ft_read_map(fd);
 	secmap = ft_strsplit(map, '\n');
+	int	*ret = (int*)malloc(sizeof(int) * (ft_nbtetri(secmap) + 1));
 	while (secmap[i])
 	{
-		ft_caller(secmap + i, cur);
+		ret[cur] = ft_caller(secmap + i);
 		i += 4;
 		cur++;		
 	}
+	ret[cur] = 0;
 	close(fd);
 }
