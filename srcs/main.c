@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/28 13:11:15 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/28 14:05:39 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ int		ft_caller(char **secmap)
 
 void	print(int *ret)
 {
-	printf("%d ", ret[0]);
-	printf("%d ", ret[1]);
-	printf("%d ", ret[2]);
-	printf("%d", ret[3]);
+	while (*ret)
+	{
+		ft_putnbr(*ret);
+		ft_putchar(' ');
+		ret++;
+	}
 }
 int		main(int argc, char **argv)
 {
