@@ -7,7 +7,7 @@
 
 #  ╓─────[ Target ]─  
 #  ╙───────────────────── ─ ─ 
-NAME = parser.a 
+NAME = parser.a
 
 #  ╓─────[ Compiler ]─  
 #  ╙───────────────────── ─ ─ 
@@ -31,8 +31,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) lib
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@$(CC) $(OBJ) $(CCFLAGS) $(LDFLAGS) -o $(NAME)
 	@echo "\n\033[0;32m [OK] \033[0m \033[0;33m Linking binary:\033[0m " $(NAME)
 
 %.o : %.c

@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/28 14:20:00 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/28 15:20:20 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print(int *ret, int len)
 		ret++;
 	}
 }
-int		main(int argc, char **argv)
+int		parse(int argc, char **argv)
 {
 	int		fd;
 	char	*map;
