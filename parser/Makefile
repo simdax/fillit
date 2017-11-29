@@ -1,10 +1,3 @@
-
-#  ╓─────[ Fillit ]─[ v0.0.1 ]  
-#  ║ Created by: ctrouill (ctrouill@student.42.fr)
-#  ║ Created at: Tue Nov  7 14:40:48 CET 2017
-#  ║ Last Edited: Tue Nov  7 14:40:48 CET 2017
-#  ╙─────────────────────────────────────────── ─ ─ 
-
 #  ╓─────[ Target ]─  
 #  ╙───────────────────── ─ ─ 
 NAME = parser.a

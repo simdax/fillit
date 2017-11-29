@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/27 20:06:00 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/29 10:45:01 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_intcmp(int *a, int *b)
 		i++;
 	if (i == 4)
 		return (1);
-	else 
+	else
 		return (0);
 }
 
@@ -93,7 +93,7 @@ int		*ft_preparse(char *map)
 int		ft_parse(int *parsedmap)
 {
 	int		i;
-	
+
 	i = 0;
 	while (g_tetros2[i])
 	{
