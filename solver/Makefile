@@ -1,7 +1,7 @@
 NAME = solver.a
 
 FLAGS = -Wall -Werror -Wextra
-FILES = main.c tetrominos.c 
+FILES = main.c 
 OBJS = $(FILES:%.c=%.o)
 INCLUDES = ~/42/srcs/
 CC = gcc -g
