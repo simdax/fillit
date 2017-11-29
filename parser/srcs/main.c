@@ -6,14 +6,12 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/28 15:53:24 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/29 10:49:20 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
-
-#include	<stdio.h>
 
 int		ft_caller(char **secmap)
 {
@@ -36,7 +34,7 @@ char	**convert(int *ret, int len)
 	return (res);
 }
 
-char		**parse(int argc, char **argv)
+char	**parse(int argc, char **argv)
 {
 	int		fd;
 	char	*map;
@@ -44,7 +42,8 @@ char		**parse(int argc, char **argv)
 	int		i;
 	int		cur;
 	int		nb_tetri;
-			
+	int		*ret;
+
 	cur = 0;
 	i = 0;
 	if (argc != 2)
@@ -56,14 +55,14 @@ char		**parse(int argc, char **argv)
 	map = ft_read_map(fd);
 	secmap = ft_strsplit(map, '\n');
 	nb_tetri = ft_nbtetri(secmap) / 4;
-	int	*ret = (int*)malloc(sizeof(int) * (nb_tetri + 1));
+	ret = (int*)malloc(sizeof(int) * (nb_tetri + 1));
 	while (secmap[i])
 	{
 		ret[cur] = ft_caller(secmap + i);
 		i += 4;
-		cur++;		
+		cur++;
 	}
 	ret[cur] = 0;
 	close(fd);
-	return(convert(ret, nb_tetri));
+	return (convert(ret, nb_tetri));
 }
