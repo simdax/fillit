@@ -1,6 +1,6 @@
 #  ╓─────[ Target ]─  
 #  ╙───────────────────── ─ ─ 
-NAME = rendu
+NAME = fillit
 
 #  ╓─────[ Compiler ]─  
 #  ╙───────────────────── ─ ─ 
@@ -12,7 +12,7 @@ LDFLAGS = -lft
 #  ╙───────────────────── ─ ─
 
 SRC = ft_error.c ft_read_map.c main.c parser.c solver.c 
-INC = ~/42/srcs/
+INC = ./libft
 OBJ = $(SRC:.c=.o)
 
 vpath %.c srcs/

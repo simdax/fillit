@@ -6,17 +6,14 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:53:45 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/30 12:25:04 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:28:59 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdlib.h>
-# include "libft.h"
+#include "libft.h"
+#include "fillit.h"
 
-int		resolve(char **argv, size_t size);
-char	**parse(char **argv);
-
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	char	**parsed;
 

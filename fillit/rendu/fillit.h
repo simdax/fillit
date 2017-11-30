@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 12:59:19 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 12:21:10 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:30:46 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
+int		resolve(char **argv, size_t size);
 int		ft_check_map(char *tetri);
 char	**parse(char **argv);
 char	*ft_read_map(int fd);
