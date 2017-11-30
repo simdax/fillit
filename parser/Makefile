@@ -18,7 +18,7 @@ LDFLAGS = -L$(LIBFT) -lft
 #  ╓─────[ Functions ]─  
 #  ╙───────────────────── ─ ─
 
-SRC = ft_read_map.c main.c 
+SRC = ft_read_map.c ft_error.c main.c 
 LIBFT = libft/
 INC = ./libft
 OBJ = $(SRC:.c=.o)

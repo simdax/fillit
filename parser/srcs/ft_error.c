@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 11:34:22 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/29 11:50:52 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 11:20:42 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	ft_check_map(char *tetri)
 	{
 		if ((i + 1) % 5 == 0 && tetri[i] == '\n')
 			n++;
-		else if (data[i] == '.')
+		else if (tetri[i] == '.')
 			point++;
-		else if (data[i] == '#')
+		else if (tetri[i] == '#')
 			hash++;
 		i++;
 	}
-	return ((tetri[i] == '\n' || tetri[i] == '\0') /
-						&& (n == 4 && point == 12 && hash == 4) ? 1 : 0);
+	return ((tetri[i] == '\n' || tetri[i] == '\0')
+			&& (n == 4 && point == 12 && hash == 4) ? 1 : 0);
 }
