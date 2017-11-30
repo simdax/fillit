@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/29 12:01:17 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 11:13:05 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_caller(char **secmap)
 	map1d = ft_strjoin(secmap[0], secmap[1]);
 	map1d = ft_strjoin(map1d, secmap[2]);
 	map1d = ft_strjoin(map1d, secmap[3]);
-	if (ft_error(map1d) == 0)
+	if (ft_check_map(map1d) == 0)
 		return (0);
 	return (ft_parse(ft_preparse(map1d)));
 }
@@ -60,7 +60,7 @@ char	**parse(int argc, char **argv)
 	ret = (int*)malloc(sizeof(int) * (nb_tetri + 1));
 	while (secmap[i])
 	{
-		if (!(ret[cur] = ft_caller(secmap + i))
+		if (!(ret[cur] = ft_caller(secmap + i)))
 				return (0);
 		i += 4;
 		cur++;
