@@ -11,7 +11,7 @@ LDFLAGS = -lft
 #  ╓─────[ Functions ]─  
 #  ╙───────────────────── ─ ─
 
-SRC = ft_error.c ft_read_map.c main.c parser.c solver.c 
+SRC = ft_error.c ft_read_map.c main.c parser.c solver.c utils.c 
 INC = ~/42/srcs/
 OBJ = $(SRC:.c=.o)
 
