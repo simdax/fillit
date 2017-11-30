@@ -3,7 +3,7 @@ NAME = solver.a
 FLAGS = -Wall -Werror -Wextra
 FILES = main.c 
 OBJS = $(FILES:%.c=%.o)
-INCLUDES = ~/42/srcs/
+INCLUDES = ../libft/
 CC = gcc -g
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 12:50:29 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 14:16:54 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,43 @@ int		ft_caller(char **secmap)
 	map2d = ft_strjoin(map2d, mapcpy[3]);
 	map2d = ft_strjoin(map2d, tmp);
 	if (ft_check_map(map2d) == 0)
-		return (0);
+		return (-1);
 	return (ft_parse(ft_preparse(map1d)));
 }
 
 char	**convert(int *ret, int len)
 {
-	char **res;
+	char	**res;
+	int		i;
 
+	i = 0;
 	res = (char**)malloc(sizeof(char*) * len);
-	res[len] = 0;
-	while (--len >= 0)
-		res[len] = ft_itoa(ret[len]);
+	while (i < len)
+	{
+		res[i] = ft_itoa(ret[i]);
+		i++;
+	}
+	res[i] = 0;
 	return (res);
+}
+
+int		ft_check_n(char *map)
+{
+	int		i;
+	int		len;
+	int		inc;
+
+	len = ft_strlen(map);
+	inc = 0;
+	i = 0;
+	while (map[i] && i < len - 21)
+	{
+		i += 20 + inc;
+		if (map[i] != '\n')
+			return (0);
+		inc = 1;
+	}
+	return (1);
 }
 
 char	**parse(char **argv)
@@ -70,15 +94,16 @@ char	**parse(char **argv)
 	map = ft_read_map(fd);
 	secmap = ft_strsplit(map, '\n');
 	nb_tetri = ft_nbtetri(secmap) / 4;
+	if (!(ft_check_n(map)))
+		return (0);
 	ret = (int*)malloc(sizeof(int) * (nb_tetri + 1));
 	while (secmap[i])
 	{
-		if ((ret[cur] = ft_caller(secmap + i)) == -1)
+		if (((ret[cur] = ft_caller(secmap + i)) == -1))
 				return (0);
 		i += 4;
 		cur++;
 	}
-	ret[cur] = '\0';
 	close(fd);
 	return (convert(ret, nb_tetri));
 }
