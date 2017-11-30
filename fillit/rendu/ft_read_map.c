@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 16:18:44 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 18:14:10 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 #include "tetrominos.h"
 #include "tetrominos2.h"
 
-char	*ft_read_map(int fd)
+char	*ft_read_map(char **argv)
 {
 	int		ret;
 	char	*final;
 	char	buf[256];
+	int		fd;
 
-	if (fd == -1)
+	if ((fd = open(*++argv, O_RDONLY)) == -1)
 		return (0);
 	ret = 0;
 	ret = read(fd, buf, 256);
@@ -29,6 +30,7 @@ char	*ft_read_map(int fd)
 	if (!(final = ft_strnew(ret)))
 		return (NULL);
 	ft_strcpy(final, buf);
+	close (fd);
 	return (final);
 }
 
@@ -41,7 +43,7 @@ int		ft_intcmp(int *a, int *b)
 		i++;
 	if (i == 4)
 		return (1);
-	else 
+	else
 		return (0);
 }
 
@@ -93,7 +95,7 @@ int		*ft_preparse(char *map)
 int		ft_parse(int *parsedmap)
 {
 	int		i;
-	
+
 	i = 0;
 	while (i < 20)
 	{

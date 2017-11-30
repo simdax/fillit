@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 16:23:10 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 18:14:49 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ int		ft_caller(char **secmap)
 	mapcpy[1] = secmap[1];
 	mapcpy[2] = secmap[2];
 	mapcpy[3] = secmap[3];
-	mapcpy[0] = ft_strjoin(mapcpy[0], tmp);
 	map1d = ft_strjoin(secmap[0], secmap[1]);
-	map2d = ft_strjoin(mapcpy[0], mapcpy[1]);
+	map2d = ft_strjoin((ft_strjoin(mapcpy[0], tmp)), mapcpy[1]);
 	map2d = ft_strjoin(map2d, tmp);
 	map1d = ft_strjoin(map1d, secmap[2]);
 	map2d = ft_strjoin(map2d, mapcpy[2]);
@@ -71,7 +70,7 @@ int		ft_check_n(char *map, int nb_tetri)
 	if (len < 20)
 		return (0);
 	if (len != (20 + (21 * (nb_tetri - 1))))
-			return (0);
+		return (0);
 	while (map[i] && i < len - 21)
 	{
 		i += 20 + inc;
@@ -84,31 +83,26 @@ int		ft_check_n(char *map, int nb_tetri)
 
 char	**parse(char **argv)
 {
-	int		fd;
 	char	*map;
 	char	**secmap;
-	int		i;
 	int		cur;
 	int		nb_tetri;
 	int		*ret;
 
 	cur = 0;
-	i = 0;
-	if ((fd = open(*++argv, O_RDONLY)) == -1)
-			return (0);
-	map = ft_read_map(fd);
+	map = ft_read_map(argv);
 	secmap = ft_strsplit(map, '\n');
 	nb_tetri = ft_nbtetri(secmap) / 4;
 	if (!(ft_check_n(map, nb_tetri)))
 		return (0);
 	ret = (int*)malloc(sizeof(int) * (nb_tetri + 1));
-	while (secmap[i])
+	nb_tetri = 0;
+	while (secmap[nb_tetri])
 	{
-		if (((ret[cur] = ft_caller(secmap + i)) == -1))
-				return (0);
-		i += 4;
+		if (((ret[cur] = ft_caller(secmap + nb_tetri)) == -1))
+			return (0);
+		nb_tetri += 4;
 		cur++;
 	}
-	close(fd);
-	return (convert(ret, nb_tetri));
+	return (convert(ret, ft_nbtetri(secmap) / 4));
 }
