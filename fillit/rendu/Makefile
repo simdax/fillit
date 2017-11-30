@@ -7,15 +7,14 @@ NAME = fillit
 #  ╙───────────────────── ─ ─ 
 CC = gcc
 CCFLAGS = -Wall -Werror -Wextra -g
-LDFLAGS = -lft
+LDFLAGS = libft/libft.a
 
 #  ╓─────[ Functions ]─  
 #  ╙───────────────────── ─ ─
 
 SRC = ft_error.c ft_read_map.c main.c parser.c solver.c utils.c 
-INC = ~/42/srcs/
+INC = ./libft
 OBJ = $(SRC:.c=.o)
-
 vpath %.c srcs/
 
 #  ╓─────[ Procedures ]─  
