@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 15:20:21 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:23:10 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**convert(int *ret, int len)
 	return (res);
 }
 
-int		ft_check_n(char *map)
+int		ft_check_n(char *map, int nb_tetri)
 {
 	int		i;
 	int		len;
@@ -68,6 +68,10 @@ int		ft_check_n(char *map)
 	len = ft_strlen(map);
 	inc = 0;
 	i = 0;
+	if (len < 20)
+		return (0);
+	if (len != (20 + (21 * (nb_tetri - 1))))
+			return (0);
 	while (map[i] && i < len - 21)
 	{
 		i += 20 + inc;
@@ -90,11 +94,12 @@ char	**parse(char **argv)
 
 	cur = 0;
 	i = 0;
-	fd = open(*++argv, O_RDONLY);
+	if ((fd = open(*++argv, O_RDONLY)) == -1)
+			return (0);
 	map = ft_read_map(fd);
 	secmap = ft_strsplit(map, '\n');
 	nb_tetri = ft_nbtetri(secmap) / 4;
-	if (!(ft_check_n(map)))
+	if (!(ft_check_n(map, nb_tetri)))
 		return (0);
 	ret = (int*)malloc(sizeof(int) * (nb_tetri + 1));
 	while (secmap[i])
