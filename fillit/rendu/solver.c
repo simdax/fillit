@@ -38,16 +38,14 @@ int		place(char *tetromino, t_board board, size_t pos, size_t index)
 	size_t			i;
 
 	fuck_norminette2(&col, &row, pos, board.size);
+	ft_memset(puts, -1, sizeof(int) * 4);
 	i = 0;
 	while (*tetromino)
 	{
 		if (*tetromino == '#')
 		{
 			if (board.matrice[pos] != '.' || pos / board.size > row)
-			{
-				clean(board.matrice, puts);
-				return (0);
-			}
+			  return (clean(board.matrice, puts));
 			fuck_norminette3(puts, i, pos, col);
 			board.matrice[pos] = 'A' + index;
 		}

@@ -18,7 +18,7 @@
 # include "struct.h"
 
 int		add(char **argv, t_board board, int len, int index);
-void		clean(char *matrice, int places[4]);
+int		clean(char *matrice, int places[4]);
 char	**convert(int *ret, int len);
 int		ft_caller(char **secmap);
 int	ft_check_map(char *tetri);
