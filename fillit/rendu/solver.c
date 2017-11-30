@@ -13,6 +13,7 @@
 #include "fillit2.h"
 #include "libft.h"
 #include "tetrominos.h"
+#include "struct.h"
 
 void	print(char *matrice, size_t size)
 {
@@ -29,31 +30,60 @@ void	print(char *matrice, size_t size)
 	ft_putstr("\n");
 }
 
-char	*set_matrice(int size)
+int		place(char *tetromino, t_board board, size_t pos, size_t index)
 {
-	char	*matrice;
+	unsigned int	row;
+	unsigned int	col;
+	int				puts[4];
+	size_t			i;
 
-	matrice = (char*)malloc(sizeof(char) * (size * size + 1));
-	memset(matrice, '.', size * size);
-	matrice[size * size] = 0;
-	return (matrice);
+	fuck_norminette2(&col, &row, pos, board.size);
+	ft_memset(puts, -1, sizeof(int) * 4);
+	i = 0;
+	while (*tetromino)
+	{
+		if (*tetromino == '#')
+		{
+			if (board.matrice[pos] != '.' || pos / board.size > row)
+			  return (clean(board.matrice, puts));
+			fuck_norminette3(puts, i, pos, col);
+			board.matrice[pos] = 'A' + index;
+		}
+		else if (*tetromino == '\n')
+			fuck_norminette(&row, &pos, board.size);
+		tetromino++;
+		pos++;
+	}
+	return (1);
 }
 
-int		add(char **argv, char *matrice, size_t size, int len, int index)
+void	remove_piece(char *matrice, int index)
+{
+	while (*matrice)
+	{
+		if (*matrice == 'A' + index)
+			*matrice = '.';
+		matrice++;
+	}
+}
+
+int		add(char **argv, t_board board, int len, int index)
 {
 	unsigned int	j;
+	unsigned int	sqr;
 
+	sqr = board.size * board.size;
 	j = 0;
 	if (index == len)
 		return (1);
-	while (j < size * size)
+	while (j < sqr)
 	{
-		if ((place(g_tetros[atoi(argv[index])], matrice, j, size, index)))
+		if ((place(g_tetros[ft_atoi(argv[index])], board, j, index)))
 		{
-			if (add(argv, matrice, size, len, index + 1))
+			if (add(argv, board, len, index + 1))
 				return (1);
 			else
-				remove_piece(matrice, index);
+				remove_piece(board.matrice, index);
 		}
 		j++;
 	}
@@ -62,7 +92,7 @@ int		add(char **argv, char *matrice, size_t size, int len, int index)
 
 int		resolve(char **argv, size_t size)
 {
-	char		*matrice;
+	t_board		board;
 	size_t		t;
 	int			res;
 
@@ -70,11 +100,12 @@ int		resolve(char **argv, size_t size)
 	t = 0;
 	while (argv[t])
 		t++;
-	matrice = set_matrice(size);
-	res = add(argv, matrice, size, t, 0);
+	board.matrice = set_matrice(size);
+	board.size = size;
+	res = add(argv, board, t, 0);
 	if (!res)
 		resolve(argv, size + 1);
 	else
-		print(matrice, size);
+		print(board.matrice, size);
 	return (0);
 }
