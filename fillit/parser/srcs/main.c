@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 16:23:10 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:56:35 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int		ft_caller(char **secmap)
 	mapcpy[1] = secmap[1];
 	mapcpy[2] = secmap[2];
 	mapcpy[3] = secmap[3];
-	mapcpy[0] = ft_strjoin(mapcpy[0], tmp);
+//	mapcpy[0] = ft_strjoin(mapcpy[0], tmp);
 	map1d = ft_strjoin(secmap[0], secmap[1]);
-	map2d = ft_strjoin(mapcpy[0], mapcpy[1]);
+	map2d = ft_strjoin((ft_strjoin(mapcpy[0], tmp)), mapcpy[1]);
 	map2d = ft_strjoin(map2d, tmp);
 	map1d = ft_strjoin(map1d, secmap[2]);
 	map2d = ft_strjoin(map2d, mapcpy[2]);

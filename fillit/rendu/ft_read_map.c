@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 18:14:10 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 18:27:01 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_read_map(char **argv)
 	if (!(final = ft_strnew(ret)))
 		return (NULL);
 	ft_strcpy(final, buf);
-	close (fd);
+	close(fd);
 	return (final);
 }
 
@@ -57,6 +57,14 @@ int		ft_nbtetri(char **map)
 	return (i);
 }
 
+void	retardfunctionexe2000(int *a, int *b, int *i, int *tmp)
+{
+	*a = 0;
+	*b = 0;
+	*i = 0;
+	*tmp = 500;
+}
+
 int		*ft_preparse(char *map)
 {
 	int				*ret;
@@ -65,10 +73,7 @@ int		*ft_preparse(char *map)
 	int				b;
 	int				a;
 
-	i = 0;
-	a = 0;
-	b = 0;
-	tmp = 5000;
+	retardfunctionexe2000(&a, &b, &i, &tmp);
 	ret = (int*)malloc(sizeof(int) * 4);
 	while (map[i])
 	{
