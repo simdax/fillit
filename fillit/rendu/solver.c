@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/29 11:00:40 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:32:18 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ void	print(char *matrice, size_t size)
 	ft_putstr("\n");
 }
 
-void	clean(char *matrice, int places[4])
-{
-	while (*places != -1)
-		matrice[*places++] = '.';
-}
-
 char	*set_matrice(int size)
 {
 	char	*matrice;
@@ -43,52 +37,6 @@ char	*set_matrice(int size)
 	memset(matrice, '.', size * size);
 	matrice[size * size] = 0;
 	return (matrice);
-}
-
-int		place(char *tetromino, char *matrice, size_t pos, size_t size, size_t index)
-{
-	unsigned int	row;
-	unsigned int	col;
-	int				puts[4];
-	size_t			i;
-
-	i = 0;
-	ft_memset(puts, -1, sizeof(int) * 4);
-	col = pos % size;
-	row = pos / size;
-	while (*tetromino)
-	{
-		if (*tetromino == '#')
-		{
-			if (matrice[pos] != '.' ||
-				pos / size > row)
-			{
-				clean(matrice, puts);
-				return (0);
-			}
-			puts[i++] = pos;
-			col++;
-			matrice[pos] = 'A' + index;
-		}
-		else if (*tetromino == '\n')
-		{
-			row++;
-			pos += size - 5;
-		}
-		tetromino++;
-		pos++;
-	}
-	return (1);
-}
-
-void	remove_piece(char *matrice, int index)
-{
-	while (*matrice)
-	{
-		if (*matrice == 'A' + index)
-			*matrice = '.';
-		matrice++;
-	}
 }
 
 int		add(char **argv, char *matrice, size_t size, int len, int index)
