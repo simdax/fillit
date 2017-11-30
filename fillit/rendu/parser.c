@@ -6,12 +6,22 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 18:14:49 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 19:44:19 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
+
+int		ft_nbtetri(char **map)
+{
+	int     i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+	 }
 
 int		ft_caller(char **secmap)
 {

@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 19:01:03 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/11/30 19:51:04 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,52 +47,36 @@ int		ft_intcmp(int *a, int *b)
 		return (0);
 }
 
-int		ft_nbtetri(char **map)
-{
-	int		i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
-}
-
-void	retardfunctionexe2000(int *a, int *b, int *i, int *tmp)
+void	retardfunctionexe2000(int *a, int *b, int *i)	
 {
 	*a = 0;
 	*b = 0;
 	*i = 0;
-	*tmp = 5000;
 }
 
 int		*ft_preparse(char *map)
 {
 	int				*ret;
 	int				i;
-	int				tmp;
 	int				b;
 	int				a;
 
-	retardfunctionexe2000(&a, &b, &i, &tmp);
+	retardfunctionexe2000(&a, &b, &i);
 	ret = (int*)malloc(sizeof(int) * 4);
 	while (map[i])
 	{
 		if (map[i] == '#')
 		{
-			if (tmp == 5000)
+			if (!a)
 			{
 				ret[a] = 0;
-				tmp = 0;
 				b = i;
 			}
-			if (tmp != 5000)
+			if (a)
 				ret[a] = i - b;
-			tmp++;
 			a++;
 		}
 		i++;
-		if (tmp != 5000)
-			tmp++;
 	}
 	return (ret);
 }

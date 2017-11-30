@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 17:33:51 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/30 18:27:40 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/11/30 19:35:25 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ typedef struct	s_board
 {
 	char		*matrice;
 	size_t		size;
-}     		t_board;
+}				t_board;
 
 #endif
