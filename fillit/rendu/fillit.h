@@ -19,6 +19,8 @@
 # include <sys/uio.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include "struct.h"
+#include "libft.h"
 
 int		add(char **argv, t_board board, int len, int index);
 int		clean(char *matrice, int places[4]);

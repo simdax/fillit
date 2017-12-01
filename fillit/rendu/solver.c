@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit2.h"
+#include "fillit.h"
 #include "libft.h"
 #include "tetrominos.h"
 #include "struct.h"
@@ -104,7 +104,10 @@ int		resolve(char **argv, size_t size)
 	board.size = size;
 	res = add(argv, board, t, 0);
 	if (!res)
+{
+		free(board.matrice);
 		resolve(argv, size + 1);
+}
 	else
 		print(board.matrice, size);
 	return (0);

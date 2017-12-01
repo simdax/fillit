@@ -26,5 +26,5 @@ int		main(int argc, char **argv)
 		ft_putstr_fd("error\n", 2);
 	else
 		resolve(parsed, 3);
-	free(parsed);
+//	free(parsed);
 }

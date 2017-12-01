@@ -6,7 +6,7 @@ NAME = fillit
 #  ╓─────[ Compiler ]─  
 #  ╙───────────────────── ─ ─ 
 CC = gcc
-CCFLAGS = -Wall -Werror -Wextra -g
+CCFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 LDFLAGS = libft/libft.a
 
 #  ╓─────[ Functions ]─  

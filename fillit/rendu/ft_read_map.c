@@ -12,7 +12,6 @@
 
 #include "libft.h"
 #include "fillit.h"
-#include "tetrominos.h"
 #include "tetrominos2.h"
 
 char	*ft_read_map(char **argv)

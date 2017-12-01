@@ -58,7 +58,7 @@ char	**convert(int *ret, int len)
 	int		i;
 
 	i = 0;
-	res = (char**)malloc(sizeof(char*) * len + 1);
+	res = (char**)malloc(sizeof(char*) * (len + 1));
 	while (i < len)
 	{
 		res[i] = ft_itoa(ret[i]);

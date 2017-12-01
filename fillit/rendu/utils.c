@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit2.h"
+#include "fillit.h"
 
 int		clean(char *matrice, int places[3])
 {
