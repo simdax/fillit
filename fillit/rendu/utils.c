@@ -34,17 +34,3 @@ void		fuck_norminette(unsigned int *row, size_t *pos, size_t size)
 	*row += 1;
 	*pos += size - 5;
 }
-
-void		fuck_norminette2(unsigned int *row, unsigned int *col,
-							size_t pos, size_t size)
-{
-	*col = pos % size;
-	*row = pos / size;
-}
-
-void		fuck_norminette3(int puts[4], size_t i,
-					size_t pos, unsigned int col)
-{
-	puts[i++] = pos;
-	col++;
-}

@@ -33,24 +33,25 @@ void	print(char *matrice, size_t size)
 int		place(char *tetromino, t_board board, size_t pos, size_t index)
 {
 	unsigned int	row;
-	unsigned int	col;
 	int				puts[4];
 	size_t			i;
+	size_t size = board.size;
+	char *matrice = board.matrice;
 
-	fuck_norminette2(&col, &row, pos, board.size);
-	ft_memset(puts, -1, sizeof(int) * 4);
 	i = 0;
+	ft_memset(puts, -1, sizeof(int) * 4);
+	row = pos / size;
 	while (*tetromino)
 	{
 		if (*tetromino == '#')
 		{
-			if (board.matrice[pos] != '.' || pos / board.size > row)
-			  return (clean(board.matrice, puts));
-			fuck_norminette3(puts, i, pos, col);
-			board.matrice[pos] = 'A' + index;
+			if (matrice[pos] != '.' ||	pos / size > row)
+			  	return((clean(matrice, puts)));
+			puts[i++] = pos;
+			matrice[pos] = 'A' + index;
 		}
 		else if (*tetromino == '\n')
-			fuck_norminette(&row, &pos, board.size);
+		  fuck_norminette(&row, &pos, size);
 		tetromino++;
 		pos++;
 	}

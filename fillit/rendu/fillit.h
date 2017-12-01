@@ -34,9 +34,6 @@ int		ft_parse(int *parsedmap);
 int		*ft_preparse(char *map);
 char	*ft_read_map(char **argv);
 void	fuck_norminette(unsigned int *row, size_t *pos, size_t size);
-void	fuck_norminette2(unsigned int *row, unsigned int *col,
-		size_t pos, size_t size);
-void	fuck_norminette3(int puts[4], size_t i, size_t pos, unsigned int col);
 char	**parse(char **argv);
 int		place(char *tetromino, t_board board, size_t pos, size_t index);
 void	print(char *matrice, size_t size);
