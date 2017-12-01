@@ -67,6 +67,7 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(SRC_NAME:%.c=%.o)
 
 all: $(NAME)
+	@true
 
 $(NAME): $(OBJ)
 		ar rc $(NAME) $(OBJ)

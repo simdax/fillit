@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 10:51:38 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 19:45:16 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/12/01 12:25:20 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "struct.h"
-#include "libft.h"
+# include "libft.h"
 
+void	stupid(size_t *i, size_t *pos, size_t *size, unsigned int *row);
 int		add(char **argv, t_board board, int len, int index);
 int		clean(char *matrice, int places[4]);
 char	**convert(int *ret, int len);

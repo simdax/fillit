@@ -6,12 +6,18 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:53:45 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/30 17:28:59 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/12/01 12:25:09 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
+
+void	stupid(size_t *i, size_t *pos, size_t *size, unsigned int *row)
+{
+	*i = 0;
+	*row = *pos / *size;
+}
 
 int		main(int argc, char **argv)
 {
@@ -23,8 +29,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	if (!(parsed = parse(argv)))
-		ft_putstr_fd("error\n", 2);
+		ft_putstr("error\n");
 	else
 		resolve(parsed, 3);
-//	free(parsed);
 }

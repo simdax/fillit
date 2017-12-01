@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 16:09:33 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 19:51:04 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/12/01 11:43:40 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		ft_intcmp(int *a, int *b)
 		return (0);
 }
 
-void	retardfunctionexe2000(int *a, int *b, int *i)	
+void	retardfunctionexe2000(int *a, int *b, int *i)
 {
 	*a = 0;
 	*b = 0;

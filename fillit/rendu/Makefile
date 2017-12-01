@@ -1,50 +1,49 @@
-#  ╓─────[ Target ]─  
-#  ╙───────────────────── ─ ─ 
+SRC_PATH = .
+
+SRC_NAME =  ft_error.c ft_read_map.c main.c parser.c solver.c utils.c
+
+OBJ_PATH = .
+
+INC_PATH = .
+
+CPPFLAGS = -I./libft
+
+LDFLAGS = -Llibft
+LDLIBS = -lft
 
 NAME = fillit
 
-#  ╓─────[ Compiler ]─  
-#  ╙───────────────────── ─ ─ 
-CC = gcc
-CCFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
-LDFLAGS = libft/libft.a
+CC = clang
+CFLAGS = -Werror -Wall -Wextra
 
-#  ╓─────[ Functions ]─  
-#  ╙───────────────────── ─ ─
+OBJ_NAME = $(SRC_NAME:.c=.o)
 
-SRC = ft_error.c ft_read_map.c main.c parser.c solver.c utils.c 
-INC = ./libft
-OBJ = $(SRC:.c=.o)
-vpath %.c srcs/
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
-#  ╓─────[ Procedures ]─  
-#  ╙───────────────────── ─ ─
+.PHONY: all, clean, fclean, re
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	#@$(MAKE) lib
-	@$(CC) $(OBJ) $(CCFLAGS) $(LDFLAGS) -o $(NAME)
-	@echo "\n\033[0;32m [OK] \033[0m \033[0;33m Linking binary:\033[0m " $(NAME)
+	make -C ./libft/
+	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
 
-%.o : %.c
-	@echo "\033[0;32m [OK] \033[0m \033[0;33m Compiling:\033[0m " $@
-	@$(CC) $(CCFLAGS) -I$(INC)  -c -o $@ $<
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean:
-	@/bin/rm -Rf $(OBJ)
-	@/bin/rm -rf $(OBJSPATH)
+	make clean -C ./libft/
+	/bin/rm -fv $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || true
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo  "\033[0;31m [✗] \033[0m \033[0;33m Removed last build: \033[0m " $(NAME)
+	make fclean -C ./libft/
+	/bin/rm -fv $(NAME)
 
-re:
-	@$(MAKE) fclean
-	@$(MAKE) all
+re: fclean all
 
-lib:
-	@make -C $(LIBFT)
-
-#  ╓─────[ Call me maybe ]─  
-#  ╙───────────────────── ─ ─ 
-.PHONY: all lib clean fclean re
+norme:
+	@norminette $(SRC)
+	@norminette $(INC_PATH)/*.h

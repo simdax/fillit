@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 09:48:50 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/30 17:32:18 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/12/01 12:24:40 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,24 @@ int		place(char *tetromino, t_board board, size_t pos, size_t index)
 	unsigned int	row;
 	int				puts[4];
 	size_t			i;
-	size_t size = board.size;
-	char *matrice = board.matrice;
+	size_t			size;
+	char			*matrice;
 
-	i = 0;
+	size = board.size;
+	matrice = board.matrice;
+	stupid(&i, &pos, &size, &row);
 	ft_memset(puts, -1, sizeof(int) * 4);
-	row = pos / size;
 	while (*tetromino)
 	{
 		if (*tetromino == '#')
 		{
-			if (matrice[pos] != '.' ||	pos / size > row)
-			  	return((clean(matrice, puts)));
+			if (matrice[pos] != '.' || pos / size > row)
+				return ((clean(matrice, puts)));
 			puts[i++] = pos;
 			matrice[pos] = 'A' + index;
 		}
 		else if (*tetromino == '\n')
-		  fuck_norminette(&row, &pos, size);
+			fuck_norminette(&row, &pos, size);
 		tetromino++;
 		pos++;
 	}
@@ -105,10 +106,10 @@ int		resolve(char **argv, size_t size)
 	board.size = size;
 	res = add(argv, board, t, 0);
 	if (!res)
-{
+	{
 		free(board.matrice);
 		resolve(argv, size + 1);
-}
+	}
 	else
 		print(board.matrice, size);
 	return (0);

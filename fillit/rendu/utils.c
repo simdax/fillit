@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 18:31:05 by scornaz           #+#    #+#             */
-/*   Updated: 2017/11/30 18:32:04 by scornaz          ###   ########.fr       */
+/*   Updated: 2017/12/01 12:07:24 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int		clean(char *matrice, int places[3])
 	return (0);
 }
 
-char		*set_matrice(int size)
+char	*set_matrice(int size)
 {
 	char	*matrice;
 
 	matrice = (char*)malloc(sizeof(char) * (size * size + 1));
-	memset(matrice, '.', size * size);
+	ft_memset(matrice, '.', size * size);
 	matrice[size * size] = 0;
 	return (matrice);
 }
 
-void		fuck_norminette(unsigned int *row, size_t *pos, size_t size)
+void	fuck_norminette(unsigned int *row, size_t *pos, size_t size)
 {
 	*row += 1;
 	*pos += size - 5;

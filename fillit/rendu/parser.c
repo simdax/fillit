@@ -6,7 +6,7 @@
 /*   By: nschwarz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:24:57 by nschwarz          #+#    #+#             */
-/*   Updated: 2017/11/30 19:44:19 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/12/01 11:44:56 by nschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 int		ft_nbtetri(char **map)
 {
-	int     i;
+	int		i;
 
 	i = 0;
 	while (map[i])
 		i++;
 	return (i);
-	 }
+}
 
 int		ft_caller(char **secmap)
 {
