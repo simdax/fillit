@@ -1,19 +1,17 @@
-SRC_PATH = srcs
+SRC_PATH = .
 
-SRC_NAME =  main.c \
-            foo1.c \
-            foo2.c
+SRC_NAME =  ft_error.c ft_read_map.c main.c parser.c solver.c utils.c
 
-OBJ_PATH = obj
+OBJ_PATH = .
 
-INC_PATH = includes
+INC_PATH = .
 
-CPPFLAGS = -Iincludes
+CPPFLAGS = -I./libft
 
 LDFLAGS = -Llibft
 LDLIBS = -lft
 
-NAME = a.out
+NAME = fillit
 
 CC = clang
 CFLAGS = -Werror -Wall -Wextra
@@ -28,6 +26,7 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	make -C ./libft/
 	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
@@ -35,10 +34,12 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean:
+	make clean -C ./libft/
 	/bin/rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
 
 fclean: clean
+	make fclean -C ./libft/
 	/bin/rm -fv $(NAME)
 
 re: fclean all
