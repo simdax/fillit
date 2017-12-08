@@ -6,7 +6,7 @@
 /*   By: scornaz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:53:45 by scornaz           #+#    #+#             */
-/*   Updated: 2017/12/01 12:25:09 by nschwarz         ###   ########.fr       */
+/*   Updated: 2017/12/08 13:24:37 by scornaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int		main(int argc, char **argv)
 	if (!(parsed = parse(argv)))
 		ft_putstr("error\n");
 	else
-		resolve(parsed, 3);
+		resolve(parsed, 2);
 }
